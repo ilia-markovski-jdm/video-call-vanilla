@@ -7,9 +7,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        deviceFirebase: './pocs/device-firebase/index.html',
-        webFirebase: './pocs/web-firebase/index.html',
-        webVanilla: './pocs/web-vanilla/index.html',
+        deviceFirebase: './views/device-firebase/index.html',
+        webFirebase: './views/web-firebase/index.html',
+        webVanilla: './views/web-vanilla/index.html',
       }
     }
   }
