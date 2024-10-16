@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: min(calc(100% - 32px), 540px);
+  padding-block: 16px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+a {
+  border: 1px solid black;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: lightyellow;
+}
