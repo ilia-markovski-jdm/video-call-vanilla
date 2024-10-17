@@ -128,6 +128,17 @@ button:hover {
   background-color: #f44336;
 }
 
+.red span + span {
+  display: none;
+}
+
+.green span {
+  display: none;
+}
+
+.green span + span {
+  display: inline;
+}
 input {
   padding: 10px;
   text-align: center;

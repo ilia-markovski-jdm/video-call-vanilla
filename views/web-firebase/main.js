@@ -36,7 +36,8 @@ const callButton = document.getElementById('callButton');
 const callInput = document.getElementById('callInput');
 const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
-const hangupButton = document.getElementById('hangupButton');
+const toggleCameraButton = document.getElementById('toggleCameraButton');
+const toggleMicrophoneButton = document.getElementById('toggleMicrophoneButton');
 
 // 1. Setup media sources
 
@@ -61,14 +62,10 @@ const initLocalVideo = async () => {
   remoteVideo.srcObject = remoteStream;
   remoteVideo.muted = false;
   remoteVideo.play();
-
-  callButton.disabled = false;
-  answerButton.disabled = false;
 };
 
 initLocalVideo();
 
-// 2. Create an offer
 callButton.onclick = async () => {
   // Reference Firestore collections for signaling
   const callDoc = firestore.collection('calls').doc();
@@ -112,10 +109,8 @@ callButton.onclick = async () => {
     });
   });
 
-  hangupButton.disabled = false;
 };
 
-// 3. Answer the call with the unique ID
 answerButton.onclick = async () => {
   const callId = callInput.value;
   const callDoc = firestore.collection('calls').doc(callId);
@@ -151,3 +146,35 @@ answerButton.onclick = async () => {
     });
   });
 };
+
+// toggleCameraButton.onclick = () => {
+//   const videoTrack = localStream.getTracks().find(track => track.kind === 'video');
+//   if (videoTrack.enabled) {
+//     videoTrack.enabled = false;
+//     toggleCameraButton.classList.add('green');
+//   } else {
+//     videoTrack.enabled = true;
+//     toggleCameraButton.classList.add('red');
+//   }
+// }
+
+// toggleMicrophoneButton.onclick = () => {
+//   const videoTrack = localStream.getTracks().find(track => track.kind === 'video');
+//   if (videoTrack.enabled) {
+//     videoTrack.enabled = false;
+//     toggleCameraButton.classList.add('green');
+//   } else {
+//     videoTrack.enabled = true;
+//     toggleCameraButton.classList.add('red');
+//   }
+// }
+
+toggleCameraButton.addEventListener('click', () => toggleTracks(toggleCameraButton, 'video'))
+toggleMicrophoneButton.addEventListener('click', () => toggleTracks(toggleMicrophoneButton, 'audio'))
+
+const toggleTracks = (trigger, kind) => {
+  const track = localStream.getTracks().find(track => track.kind === kind);
+
+  trigger.classList = track.enabled ? 'green' : 'red';
+  track.enabled = !track.enabled;
+}

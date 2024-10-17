@@ -26,13 +26,22 @@
         </div>
       </div>
       <div class="actions">
-        <button id="callButton" class="green" disabled>
-          Create Call (offer)
-        </button>
-        <button id="answerButton" class="blue" disabled>Add Answer</button>
-        <button id="hangupButton" class="red" disabled>Hangup</button>
+        <button id="callButton" class="green">Create Call (offer)</button>
+        <button id="answerButton" class="blue">Add Answer</button>
       </div>
       <input id="callInput" />
+      <div class="actions">
+        <button id="toggleCameraButton" class="red">
+          <span>Disable</span>
+          <span>Enable</span>
+          Camera
+        </button>
+        <button id="toggleMicrophoneButton" class="red">
+          <span>Disable</span>
+          <span>Enable</span>
+          Microphone
+        </button>
+      </div>
     </div>
     <script type="module" src="./main.js"></script>
   </body>
