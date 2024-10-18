@@ -11,6 +11,11 @@ export default defineConfig({
         webFirebase: './views/web-firebase/index.html',
         webVanilla: './views/web-vanilla/index.html',
       }
-    }
+    },
+    minify: false,
+    terserOptions: {
+      compress: false,
+      mangle: false,
+    },
   }
 })

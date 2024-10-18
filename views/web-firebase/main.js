@@ -147,28 +147,6 @@ answerButton.onclick = async () => {
   });
 };
 
-// toggleCameraButton.onclick = () => {
-//   const videoTrack = localStream.getTracks().find(track => track.kind === 'video');
-//   if (videoTrack.enabled) {
-//     videoTrack.enabled = false;
-//     toggleCameraButton.classList.add('green');
-//   } else {
-//     videoTrack.enabled = true;
-//     toggleCameraButton.classList.add('red');
-//   }
-// }
-
-// toggleMicrophoneButton.onclick = () => {
-//   const videoTrack = localStream.getTracks().find(track => track.kind === 'video');
-//   if (videoTrack.enabled) {
-//     videoTrack.enabled = false;
-//     toggleCameraButton.classList.add('green');
-//   } else {
-//     videoTrack.enabled = true;
-//     toggleCameraButton.classList.add('red');
-//   }
-// }
-
 toggleCameraButton.addEventListener('click', () => toggleTracks(toggleCameraButton, 'video'))
 toggleMicrophoneButton.addEventListener('click', () => toggleTracks(toggleMicrophoneButton, 'audio'))
 

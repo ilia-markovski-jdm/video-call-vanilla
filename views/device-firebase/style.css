@@ -64,17 +64,63 @@ body {
   width: 100%;
   height: 100%;
   transition: 0.3s ease;
+  object-fit: cover;
 }
 
 .video--local {
   z-index: 1;
 }
 
-.connected .video--local {
-  top: 1.5vw;
-  right: 1.5vw;
-  --size: 20vw;
+.video--local {
+  top: 24px;
+  right: 24px;
+  --size: 200px;
   width: var(--size);
-  height: calc(var(--size) * 9 / 16);
+  height: calc(var(--size) * 2 / 3);
   object-fit: cover;
+  border: 5px solid black;
+  border-radius: 16px;
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 6px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0;
+  display: inline-flex;
+  gap: 10px;
+  border-radius: 9999px;
+}
+
+button svg {
+  width: 32px;
+  height: 32px;
+}
+
+.red {
+  background-color: #f44336;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 32px;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+}
+
+.timer {
+  color: white;
+  line-height: 1;
 }
