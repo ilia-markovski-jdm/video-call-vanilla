@@ -2,13 +2,13 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqnhxRyOsERYshO8rEKY7ipQJXjJnGoP0",
-  authDomain: "test-b1f4c.firebaseapp.com",
-  projectId: "test-b1f4c",
-  storageBucket: "test-b1f4c.appspot.com",
-  messagingSenderId: "778062457919",
-  appId: "1:778062457919:web:7479a0db129848ad135c8a",
-  measurementId: "G-LNRWRK4NRP"
+  apiKey: 'AIzaSyCyKYgrLaUjacbT81vaWiYh1bOToLfYBZM',
+  authDomain: 'smila-cloud.firebaseapp.com',
+  projectId: 'smila-cloud',
+  storageBucket: 'smila-cloud.appspot.com',
+  messagingSenderId: '972305707046',
+  appId: '1:972305707046:web:b6a2f0016539e384fbb6e7',
+  measurementId: 'G-TF3HL6V7ZR',
 };
 
 if (!firebase.apps.length) {
