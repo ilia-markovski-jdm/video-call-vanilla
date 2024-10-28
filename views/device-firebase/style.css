@@ -82,7 +82,7 @@ body {
   border-radius: 16px;
 }
 
-button {
+.button {
   border: none;
   color: white;
   padding: 6px 16px;
@@ -123,4 +123,64 @@ button svg {
 .timer {
   color: white;
   line-height: 1;
+}
+
+.button-label {
+  display: none;
+  color: white;
+}
+
+@media (max-width: 500px) {
+  body {
+    background-color: transparent;
+  }
+  .container {
+    height: auto;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: #2d2d2d;
+    overflow: hidden;
+    padding-top: 8px;
+  }
+
+  .video--remote {
+    position: relative;
+    background-color: lightgrey;
+    border-radius: 8px;
+    width: calc(100% - 16px);
+    margin-inline: auto;
+  }
+
+  .video--local {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .group {
+    position: static;
+    padding: 0;
+    gap: 0;
+  }
+
+  .button {
+    width: 100%;
+    border-radius: 0;
+    justify-content: center;
+  }
+
+  .button span {
+    display: none;
+  }
+
+  .button-label,
+  .timer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .timer {
+    border-bottom: 1px solid #8b8b8b;
+  }
 }
