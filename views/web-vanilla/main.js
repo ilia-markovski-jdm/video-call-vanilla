@@ -25,9 +25,9 @@ const servers = {
     { urls: "stun:stun4.l.google.com:19302" },
     { urls: "stun:stun4.l.google.com:5349" },
     {
-      urls: 'turn:relay1.expressturn.com:3478',
-      username: 'efOZBFHIGBYYNZ87EW',
-      credential: 'ccUlfURNMFbxdvmp'
+      urls: 'turn:68.219.124.29:3478',
+      username: 'test',
+      credential: 'test'
     }
   ],
   iceCandidatePoolSize: 2,
