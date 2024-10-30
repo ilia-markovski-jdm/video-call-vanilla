@@ -94,6 +94,9 @@ const setVolumeLevel = () => {
 
   volumeLevelLabel.textContent = (volumeLevel * volumeBars).toFixed(0);
   volumeBar.setAttribute('data-level', volumeLevel);
+
+  volumeUpButton.disabled = volumeLevel === 1;
+  volumeDownButton.disabled = volumeLevel === 0;
 }
 
 const init = async () => {
@@ -288,8 +291,6 @@ const displayTime = (seconds2) => {
 };
 
 const handleVolume = (action) => {
-  const minVolume = 0.0;
-  const maxVolume = 1.0;
   const step = +(1 / volumeBars).toFixed(1);
 
   if (action === "increase") {
@@ -307,9 +308,6 @@ const handleVolume = (action) => {
   if (window.chrome.webview && window.chrome.webview.hostObjects) {
     window.chrome.webview.hostObjects.trackData.setVolume(volumeLevel);
   }
-
-  volumeUpButton.disabled = volumeLevel === maxVolume;
-  volumeDownButton.disabled = volumeLevel === minVolume;
 
   volumeModal.classList.add("active");
 
