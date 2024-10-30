@@ -34,6 +34,7 @@ const remoteVideo = document.querySelector(".js-video-remote");
 const endCallButton = document.querySelector(".js-end-call-button");
 const timerDisplay = document.querySelector(".js-timer");
 let preferredCameraId = '';
+
 const init = async () => {
   try {
     var allDevices = await navigator.mediaDevices.enumerateDevices();
@@ -45,6 +46,7 @@ const init = async () => {
       }
     });
     var permissions = '';
+
     await navigator.permissions
       .query({ name: "camera" })
       .then((permission) => {
@@ -58,9 +60,9 @@ const init = async () => {
       });
 
     if (preferredCameraId === '') {
-      console.error("device PC Camera not available. Refresh the page.");
+      console.error(`"PC Camera" not found. The default camera is using.`);
     }
-    localStream = await navigator.mediaDevices.getUserMedia({ video: preferredCameraId ? { deviceId: preferredCameraId } : false, audio: true });
+    localStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: preferredCameraId }, audio: true });
     remoteStream = new MediaStream();
     localStream.getTracks().forEach((track) => {
       pc.addTrack(track, localStream);
@@ -91,9 +93,10 @@ const init = async () => {
   }
 };
 init();
-const addAnswer = async (callId2) => {
+
+const addAnswer = async (callId) => {
   try {
-    const callDoc = firestore.collection("calls").doc(callId2);
+    const callDoc = firestore.collection("calls").doc(callId);
     const answerCandidates = callDoc.collection("answerCandidates");
     const offerCandidates = callDoc.collection("offerCandidates");
     pc.onicecandidate = (event) => {
@@ -125,10 +128,16 @@ const addAnswer = async (callId2) => {
         endCall();
       }
     });
+
     startTimer();
   } catch (error) {
     console.error("Error during adding answer:", error);
   }
+
+  pc.onconnectionstatechange = async () => {
+    window.chrome.webview.hostObjects.connectionData.Set(pc.connectionState);
+  }
+
 };
 const endCall = async () => {
   try {
