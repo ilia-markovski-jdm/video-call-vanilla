@@ -30,7 +30,7 @@ const servers = {
       credential: 'test'
     }
   ],
-  iceCandidatePoolSize: 2,
+  iceCandidatePoolSize: 10,
 };
 
 const localVideo = document.getElementById('localVideo');

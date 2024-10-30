@@ -1,103 +1,27 @@
-/* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-/* Prevent font size inflation */
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-/* Remove default margin in favour of better control in authored CSS */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* Set shorter line heights on headings and interactive elements */
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
   font-family: inherit;
-  font-size: inherit;
 }
 
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
+:root {
+  --dark: #2e2e2e;
+  --light: #f2f2f2;
+  --light-border: #dfdfdf;
+  --white: #ffffff;
+  --black: #000000;
+  --primary: #ff2424;
+  --primary-border: #d30000;
 }
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   margin: 0;
+  padding: 0;
+  line-height: 1.25;
 }
 
 .container {
@@ -106,79 +30,175 @@ body {
   height: 100vh;
   border-radius: 50px;
   overflow: hidden;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .video {
-  background-color: black;
-  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--black);
+}
+
+.video--remote {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  transition: 0.3s ease;
-  object-fit: cover;
+  left: 0;
+  right: 0;
 }
 
 .video--local {
   z-index: 1;
+  width: 224px;
+  height: 152px;
+  border: 7px solid var(--dark);
+  border-radius: 19px;
+  margin-top: 16px;
+  margin-right: 16px;
 }
 
-.video--local {
-  top: 24px;
-  right: 24px;
-  --size: 200px;
-  width: var(--size);
-  height: calc(var(--size) * 2 / 3);
-  object-fit: cover;
-  border: 5px solid black;
-  border-radius: 16px;
+button {
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.button {
+.button-action {
   border: none;
-  color: white;
-  padding: 6px 16px;
+  padding: 16px 55px 16px 26px;
   text-align: center;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
-  border-radius: 0;
-  display: inline-flex;
-  gap: 10px;
+
+  gap: 22px;
   border-radius: 9999px;
+  font-weight: 400;
+  background-color: var(--primary);
+  color: var(--white);
+  font-size: 32px;
+  border: 2px solid var(--primary-border);
 }
 
-button svg {
-  width: 32px;
-  height: 32px;
+.button-action:active {
+  background-color: var(--primary-border);
 }
 
-.red {
-  background-color: #f44336;
+.button-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.button-control {
+  padding: 16px;
+  border-radius: 100%;
+  background-color: var(--light);
+  border: 2px solid var(--light-border);
+  line-height: 0;
+}
+
+.button-control:active {
+  background-color: var(--light-border);
 }
 
 .group {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 12px;
+  gap: 22px;
+  padding: 22px 16px 16px;
   align-items: center;
   backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 32px;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 66px;
+}
+
+.label {
+  color: var(--white);
+  font-size: 32px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.375;
+  color: var(--black);
+}
+
+.volume-modal {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  left: 24px;
-  bottom: 24px;
+  top: 0;
+  width: 510px;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  background-color: var(--white);
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--light-border);
+  border-top: 0;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+  padding: 54px 24px 72px;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+}
+.volume-modal.active {
+  opacity: 1;
+  visibility: visible;
 }
 
-.timer {
-  color: white;
-  line-height: 1;
+.volume {
+  display: inline-flex;
+  width: 292px;
+  gap: 3px;
+  border-radius: 11px;
+  overflow: hidden;
 }
 
-@media (max-width: 500px) {
+.volume span {
+  flex: 100% 1 1;
+  background-color: var(--light-border);
+  height: 16px;
+}
+
+[data-level='0.2'] span:nth-child(-n + 1) {
+  background-color: var(--black);
+}
+
+[data-level='0.4'] span:nth-child(-n + 2) {
+  background-color: var(--black);
+}
+
+[data-level='0.6'] span:nth-child(-n + 3) {
+  background-color: var(--black);
+}
+
+[data-level='0.8'] span:nth-child(-n + 4) {
+  background-color: var(--black);
+}
+
+[data-level='1'] span {
+  background-color: var(--black);
+}
+@media (max-width: 768px) {
   body {
     background-color: transparent;
     min-height: auto;
@@ -187,23 +207,19 @@ button svg {
   .container {
     width: 216px;
     height: 130px;
-    border-radius: 0;
-    background-color: #2d2d2d;
+    border-radius: 12px;
+    padding: 0;
     overflow: hidden;
+  }
+
+  .container > *:not(.video--remote) {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
   }
 
   .video--remote {
-    position: relative;
-    border-radius: 8px;
-  }
-
-  .video--local {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .group {
-    overflow: hidden;
-    visibility: hidden;
+    position: static;
   }
 }
