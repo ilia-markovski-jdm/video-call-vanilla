@@ -116,7 +116,6 @@ function copyToClipboard(target, el) {
 
   // Copy the text inside the text field
   navigator.clipboard.writeText(target.value);
-  alert('Copied!')
 }
 
 initStreams();
