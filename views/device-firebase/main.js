@@ -14,15 +14,24 @@ const firebaseConfig = {
 const translations = {
   endCall: {
     en: "End Call",
-    bg: "Затвори"
+    da: "Afslut opkald",
+    fi: "Lopeta puhelu",
+    de: "Beenden",
+    sv: "Avsluta samtal"
   },
   volumeLevel: {
     en: "Volume level",
-    bg: "Сила на звука"
+    da: "Lydstyrke",
+    fi: "Äänenvoimakkuuden taso",
+    de: "Lautstärke",
+    sv: "Volymnivå"
   },
   volume: {
     en: "Volume",
-    bg: "Звук"
+    da: "Lydstyrke",
+    fi: "Äänenvoimakkuus",
+    de: "Lautstärke",
+    sv: "Volym"
   }
 }
 
