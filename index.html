@@ -3,21 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="image/png" sizes="16x16" rel="icon" href="./favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./style.css" />
-    <title>Video Call POCs</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="./favicon.png" />
+    <title>Video Call - Web Vanilla</title>
   </head>
   <body>
-    <div class="container">
-      <a href="./views/web-vanilla/">🌼 Web - Vanilla</a>
-      <a href="./views/web-firebase/">🔥 Web - Firebase</a>
-      <a href="./views/device-firebase/">💊 Device - Firebase</a>
+    <div class="wrapper">
+      <div class="media">
+        <div class="video">
+          <h3>Local Stream</h3>
+          <video id="localVideo" autoplay playsinline muted></video>
+        </div>
+        <div class="video">
+          <h3>Remote Stream</h3>
+          <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="createOfferButton" class="green">Create Offer</button>
+        <button id="createAnswerButton" class="blue">Create Answer</button>
+        <button id="addAnswerButton" class="red">Add Answer</button>
+      </div>
+      <div class="grid">
+        <textarea id="offerArea" placeholder="Offer"></textarea>
+        <textarea id="answerArea" placeholder="Answer"></textarea>
+      </div>
     </div>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
