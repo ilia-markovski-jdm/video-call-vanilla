@@ -32,6 +32,8 @@ const createOfferButton = document.getElementById('createOfferButton');
 const createAnswerButton = document.getElementById('createAnswerButton');
 const addAnswerButton = document.getElementById('addAnswerButton');
 const offerArea = document.getElementById('offerArea');
+const copyOfferButton = document.getElementById('copyOfferButton');
+const copyAnswerButton = document.getElementById('copyAnswerButton');
 
 const initStreams = async () => {
   peerConnection = new RTCPeerConnection(servers);
@@ -55,6 +57,7 @@ const initStreams = async () => {
 };
 
 const createOffer = async () => {
+  console.log(123)
   peerConnection.ontrack = (event) => {
     remoteVideo.srcObject = event.streams[0];
   };
@@ -107,11 +110,23 @@ const addCandidates = async (candidates) => {
   }
 }
 
+function copyToClipboard(target, el) {
+  target.select();
+  target.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(target.value);
+  alert('Copied!')
+}
+
 initStreams();
 
 createOfferButton.addEventListener('click', createOffer);
 createAnswerButton.addEventListener('click', createAnswer);
 addAnswerButton.addEventListener('click', addAnswer);
+addAnswerButton.addEventListener('click', addAnswer);
+copyOfferButton.addEventListener('click', (e) => copyToClipboard(offerArea, e.target));
+copyAnswerButton.addEventListener('click', (e) => copyToClipboard(answerArea, e.target));
 
 
 

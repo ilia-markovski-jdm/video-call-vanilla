@@ -1,107 +1,31 @@
-/* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: inherit;
 }
 
-/* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
-
-/* Remove default margin in favour of better control in authored CSS */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* Set shorter line heights on headings and interactive elements */
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-weight: 400;
   font-style: normal;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: 0;
+  padding: 0;
 }
 
 .wrapper {
-  width: min(100% - 40px, 1200px);
+  width: min(100% - 20px, 1200px);
   margin-inline: auto;
   min-height: 100vh;
   padding-block: 20px;
@@ -110,21 +34,28 @@ body {
   gap: 40px;
 }
 
-h3 {
-  margin-bottom: 10px;
+.title {
+  font-size: 24px;
+  margin-block: 0;
 }
 
-video {
+.heading {
+  font-size: 20px;
+  margin-block: 0;
+}
+
+.video-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.video {
   aspect-ratio: 16/9;
   width: 100%;
-  border: 1px solid black;
-  background-color: black;
-}
-
-.media {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  border: 1px solid #000000;
+  background-color: #000000;
+  object-fit: cover;
 }
 
 .actions {
@@ -134,40 +65,82 @@ video {
   gap: 20px;
 }
 
-button {
+.button {
   border: none;
-  color: white;
+  color: #ffffff;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   border-radius: 0;
+  font-size: 16px;
 }
 
 button:hover {
   opacity: 0.9;
 }
 
-.green {
+.button--green {
   background-color: #04aa6d;
 }
-.blue {
+.button--blue {
   background-color: #008cba;
 }
-.red {
+.button--red {
   background-color: #f44336;
 }
+.button--orange {
+  background-color: #ff8c00;
+}
 
-textarea {
+.textarea {
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid #000000;
   border-radius: 0;
-  min-height: 300px;
+  min-height: 200px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  align-items: start;
+}
+
+.textarea-holder {
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.textarea-holder .textarea:placeholder-shown + .button {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .actions,
+  .grid,
+  .wrapper {
+    gap: 10px 5px;
+  }
+
+  .button {
+    flex-grow: 1;
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+
+  .textarea {
+    padding: 5px;
+    min-height: 100px;
+  }
 }

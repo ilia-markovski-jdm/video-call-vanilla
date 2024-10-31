@@ -9,24 +9,55 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="media">
-        <div class="video">
-          <h3>Local Stream</h3>
-          <video id="localVideo" autoplay playsinline muted></video>
+      <h1 class="title">WebRTC Video Call</h1>
+      <div class="grid">
+        <div class="video-holder">
+          <h2 class="heading">Local Stream</h2>
+          <video
+            id="localVideo"
+            class="video"
+            autoplay
+            playsinline
+            muted
+          ></video>
         </div>
-        <div class="video">
-          <h3>Remote Stream</h3>
-          <video id="remoteVideo" autoplay playsinline></video>
+        <div class="video-holder">
+          <h2 class="heading">Remote Stream</h2>
+          <video id="remoteVideo" class="video" autoplay playsinline></video>
         </div>
       </div>
       <div class="actions">
-        <button id="createOfferButton" class="green">Create Offer</button>
-        <button id="createAnswerButton" class="blue">Create Answer</button>
-        <button id="addAnswerButton" class="red">Add Answer</button>
+        <button id="createOfferButton" class="button button--green">
+          Create Offer
+        </button>
+        <button id="createAnswerButton" class="button button--blue">
+          Create Answer
+        </button>
+        <button id="addAnswerButton" class="button button--red">
+          Add Answer
+        </button>
       </div>
       <div class="grid">
-        <textarea id="offerArea" placeholder="Offer"></textarea>
-        <textarea id="answerArea" placeholder="Answer"></textarea>
+        <div class="textarea-holder">
+          <textarea
+            id="offerArea"
+            placeholder="Offer"
+            class="textarea"
+          ></textarea>
+          <button class="button button--orange" id="copyOfferButton">
+            Copy
+          </button>
+        </div>
+        <div class="textarea-holder">
+          <textarea
+            id="answerArea"
+            placeholder="Answer"
+            class="textarea"
+          ></textarea>
+          <button class="button button--orange" id="copyAnswerButton">
+            Copy
+          </button>
+        </div>
       </div>
     </div>
     <script type="module" src="./main.js"></script>
