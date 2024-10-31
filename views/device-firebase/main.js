@@ -35,7 +35,8 @@ const translations = {
   }
 }
 
-const volumeBars = 5;
+const maxVolumeLevel = 5;
+const minVolumeLevel = 0;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -59,8 +60,11 @@ let remoteStream = null;
 
 const urlParams = new URLSearchParams(window.location.search);
 const callId = urlParams.get("callId");
+console.log('callId: ', callId);
 const lang = urlParams.get("lang") || "en";
+console.log('lang: ', lang);
 let volumeLevel = +urlParams.get("volume");
+console.log('volumeLevel: ', volumeLevel);
 
 let timer;
 let seconds = 0;
@@ -94,26 +98,30 @@ const setTranslation = (target, key) => {
 }
 
 const setVolumeLevel = () => {
-  if (volumeLevel > 1) {
-    volumeLevel = 1;
+  if (volumeLevel > maxVolumeLevel) {
+    volumeLevel = maxVolumeLevel;
   }
-  if (volumeLevel < 0) {
-    volumeLevel = 0;
+  if (volumeLevel < minVolumeLevel) {
+    volumeLevel = minVolumeLevel;
   }
 
-  volumeLevelLabel.textContent = (volumeLevel * volumeBars).toFixed(0);
+  volumeLevelLabel.textContent = volumeLevel;
   volumeBar.setAttribute('data-level', volumeLevel);
 
-  volumeUpButton.disabled = volumeLevel === 1;
-  volumeDownButton.disabled = volumeLevel === 0;
+  volumeUpButton.disabled = volumeLevel === maxVolumeLevel;
+  volumeDownButton.disabled = volumeLevel === minVolumeLevel;
 }
 
-const init = async () => {
+const setInitialValues = () => {
   setTranslation(endCallButtonText, 'endCall');
   setTranslation(volumeModalTitle, 'volumeLevel');
   setTranslation(volumeTitle, 'volume');
   setVolumeLevel();
+}
 
+setInitialValues();
+
+const init = async () => {
   try {
     const allDevices = await navigator.mediaDevices.enumerateDevices();
 
@@ -203,6 +211,7 @@ const addAnswer = async (id) => {
     const offerCandidates = callDoc.collection("offerCandidates");
 
     pc.onicecandidate = (event) => {
+      console.log('onicecandidate event: ', event);
       event.candidate && answerCandidates.add(event.candidate.toJSON());
     };
 
@@ -222,6 +231,7 @@ const addAnswer = async (id) => {
       type: answerDescription.type,
       sdp: answerDescription.sdp
     };
+    console.log('answer: ', answer);
 
     await callDoc.update({ answer });
 
@@ -229,6 +239,7 @@ const addAnswer = async (id) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           const data = change.doc.data();
+          console.log('offerCandidates data: ', data);
           pc.addIceCandidate(new RTCIceCandidate(data));
         }
       });
@@ -300,17 +311,13 @@ const displayTime = (seconds2) => {
 };
 
 const handleVolume = (action) => {
-  const step = +(1 / volumeBars).toFixed(1);
-
   if (action === "increase") {
-    volumeLevel = (volumeLevel + step).toFixed(1);
+    volumeLevel++;
   }
 
   if (action === "decrease") {
-    volumeLevel = (volumeLevel - step).toFixed(1);
+    volumeLevel--;
   }
-
-  volumeLevel = Math.round(volumeLevel * 10) / 10;
 
   setVolumeLevel();
 
@@ -324,7 +331,6 @@ const handleVolume = (action) => {
   volumeModalTimer = setTimeout(() => {
     volumeModal.classList.remove("active");
   }, volumeModalDuration);
-
 }
 
 endCallButton.addEventListener("click", handleEndCall);

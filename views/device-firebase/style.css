@@ -179,23 +179,23 @@ button {
   height: 16px;
 }
 
-[data-level='0.2'] span:nth-child(-n + 1) {
+[data-level='1'] span:nth-child(-n + 1) {
   background-color: var(--black);
 }
 
-[data-level='0.4'] span:nth-child(-n + 2) {
+[data-level='2'] span:nth-child(-n + 2) {
   background-color: var(--black);
 }
 
-[data-level='0.6'] span:nth-child(-n + 3) {
+[data-level='3'] span:nth-child(-n + 3) {
   background-color: var(--black);
 }
 
-[data-level='0.8'] span:nth-child(-n + 4) {
+[data-level='4'] span:nth-child(-n + 4) {
   background-color: var(--black);
 }
 
-[data-level='1'] span {
+[data-level='5'] span {
   background-color: var(--black);
 }
 @media (max-width: 768px) {
